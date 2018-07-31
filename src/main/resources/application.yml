@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+    freemarker:
+      cache: false
+      template-loader-path: classpath:/templates
+
+    datasource:
+        name: twitter
+        url: jdbc:mysql://127.0.0.1:3306/twitter?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: root
+        password: 19941027
+        driver-class-name: com.mysql.jdbc.Driver
+
+
+
+
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.twitter.tweetsshow.model

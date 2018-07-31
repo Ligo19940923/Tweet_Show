@@ -34,8 +34,9 @@
                     newDiv.setAttribute("id",data[i].id);
                     newDiv.setAttribute("style","display:none");
                     var key = $("#keywords").val();
+                    var word = data[i].text.match(/NASA/i);
 
-                    data[i].text = data[i].text.replace(key,"<span style=\"color: red; font-weight: bold\">"+key+"</span>");
+                    data[i].text = data[i].text.replace(/NASA/i,"<span style=\"color: red; font-weight: bold\">"+word+"</span>");
                     $("#row1").prepend(newDiv);
                 }
                 for(var i =data.length-1; i >=0 ; i--){
@@ -73,16 +74,17 @@
 
         <div class="panel panel-info col-md-4">
             <div class="panel-heading">
-                <form role="form" class="form-inline" id="search" action="/changeKeywords" method="post" onsubmit="return sub()" >
-                    <input id="keywords" class="form-control " style="width: 320px" name="keywords" >
-                    <input id="threadId" name="threadId" type="hidden" value="${threadId!'0'}">
-                    <button class="btn btn-default" style="float: right" type="submit" >检索</button>
-                </form>
+                <#--<form role="form" class="form-inline" id="search" action="/changeKeywords" method="post" onsubmit="return sub()" >-->
+                    <#--<input id="keywords" class="form-control " style="width: 320px" name="keywords" >-->
+                    <#--<input id="threadId" name="threadId" type="hidden" value="${threadId!'0'}">-->
+                    <#--<button class="btn btn-default" style="float: right" type="submit" >检索</button>-->
+                <#--</form>-->
+                NASA
             </div>
             <div class="panel-body">
                 <div class="row" id="row1">
 
-                    <#list tweets as tweet>
+                    <#list tweets1 as tweet>
 
 
                         <div id="${tweet.id}"  style="background-color: lemonchiffon;border: groove" >

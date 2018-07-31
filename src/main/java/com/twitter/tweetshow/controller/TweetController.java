@@ -15,7 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Controller
 @RequestMapping(value = "/")
@@ -27,8 +29,31 @@ public class TweetController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
 
     public String tweetList(Model model){
-        List<Tweet> tweets = tweetService.findAllTweets();
+        List<Tweet> tweetsList = tweetService.findAllTweets();
+//        model.addAttribute("tweets",tweets);
+
+        //对于include嵌套页面填入不同数据
+
+        List<Tweet> tweets = new ArrayList<Tweet>();
+        List<Tweet> tweets1 = new ArrayList<Tweet>();
+        List<Tweet> tweets2 = new ArrayList<Tweet>();
+
+        for(Tweet tweet : tweetsList){
+            String text = tweet.getText();
+            if(Pattern.matches(".*(?i)China.*",text)){
+                tweets.add(tweet);
+            }
+            if(Pattern.matches(".*(?i)NASA.*",text)){
+                tweets1.add(tweet);
+            }
+            if(text.matches(".*(?i)Trump.*")){
+                tweets2.add(tweet);
+            }
+        }
+
         model.addAttribute("tweets",tweets);
+        model.addAttribute("tweets1",tweets1);
+        model.addAttribute("tweets2",tweets2);
         return "/index";
     }
 

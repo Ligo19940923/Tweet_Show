@@ -40,7 +40,7 @@
                     $("#row2").prepend(newDiv);
                 }
                 for(var i =data.length-1; i >=0 ; i--){
-                    $("#"+data[i].id).html("<div class=\"\" style=\"background-color: lemonchiffon;border: groove\" >\n" +
+                    $("#"+data[i].id).html("<div class=\"\" style=\"background-color: lemonchiffon;border-style:solid;border-width: 2px;border-bottom-width: 1px;border-top-width: 1px\" >\n" +
                             "                        <div class=\"col-md-2\" style=\"margin-top: 5px ;margin-right: 0px;margin-bottom: 0px;margin-left: 0px\" >\n" +
                             "                            <img src=\""+data[i].profileImageUrl+"\" class=\"img-circle\">\n" +
                             "                        </div>\n" +
@@ -87,7 +87,7 @@
                     <#list tweets2 as tweet>
 
 
-                        <div id="${tweet.id}"  style="background-color: lemonchiffon;border: groove" >
+                        <div id="${tweet.id}"  style="background-color: lemonchiffon;border-style:solid;border-width: 2px;border-bottom-width: 1px;border-top-width: 1px" >
 
                             <div class="col-md-2" style="margin-top: 5px ;margin-right: 0px;margin-bottom: 0px;margin-left: 0px" >
                                 <img src="${tweet.profileImageUrl}" class="img-circle">

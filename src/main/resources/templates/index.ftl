@@ -26,7 +26,7 @@
         function show() {
             var latestId;
             latestId = $("#row").children("div").first().attr("id");
-            var keyword = "China";
+            var keyword = $("#keywords").val();
             $.getJSON("/update/"+keyword+"/"+latestId,function (data,status) {
                 for(var i =data.length-1; i >=0 ; i--){
 
@@ -34,13 +34,13 @@
                     newDiv.setAttribute("id",data[i].id);
                     newDiv.setAttribute("style","display:none");
                     var key = $("#keywords").val();
-                    var word = data[i].text.match(/China/i);
+                    var word = data[i].text.match(new RegExp(keyword,"i"));
 
-                    data[i].text = data[i].text.replace(/China/i,"<span style=\"color: red; font-weight: bold\">"+word+"</span>");
+                    data[i].text = data[i].text.replace(new RegExp(keyword,"i"),"<span style=\"color: red; font-weight: bold\">"+word+"</span>");
                     $("#row").prepend(newDiv);
                 }
                 for(var i =data.length-1; i >=0 ; i--){
-                    $("#"+data[i].id).html("<div class=\"\" style=\"background-color: lemonchiffon;border-style:solid;border-width: 2px;border-bottom-width: 1px;border-top-width: 1px\" >\n" +
+                    $("div#row div#"+data[i].id).html("<div class=\"\" style=\"background-color: lemonchiffon;border-style:solid;border-width: 2px;border-bottom-width: 1px;border-top-width: 1px\" >\n" +
                             "                        <div class=\"col-md-2\" style=\"margin-top: 5px ;margin-right: 0px;margin-bottom: 0px;margin-left: 0px\" >\n" +
                             "                            <img src=\""+data[i].profileImageUrl+"\" class=\"img-circle\">\n" +
                             "                        </div>\n" +
@@ -54,7 +54,7 @@
                             "                        </div>\n" +
                             "\n" +
                             "                    </div>");
-                    $("#"+data[i].id).delay((data.length-1-i)*1000).slideDown();
+                    $("div#row div#"+data[i].id).delay((data.length-1-i)*1000).slideDown();
                 }
             });
 
@@ -77,12 +77,12 @@
 
         <div class="panel panel-info col-md-4">
             <div class="panel-heading">
-                <#--<form role="form" class="form-inline" id="search" action="/changeKeywords" method="post" onsubmit="return sub()" >-->
-                    <#--<input id="keywords" class="form-control " style="width: 320px" name="keywords" >-->
-                    <#--<input id="threadId" name="threadId" type="hidden" value="${threadId!'0'}">-->
-                    <#--<button class="btn btn-default" style="float: right" type="submit" >检索</button>-->
-                <#--</form>-->
-                China
+                <form role="form" class="form-inline" id="search" action="/changeKeywords" method="post" onsubmit="return sub()" >
+                    <input id="keywords" class="form-control " style="width: 320px" name="keywords" value="China">
+                    <input id="threadId" name="threadId" type="hidden" value="${threadId!'0'}">
+                    <button class="btn btn-default" style="float: right" type="submit" >检索</button>
+                </form>
+
             </div>
             <div class="panel-body">
                 <div class="row" id="row">

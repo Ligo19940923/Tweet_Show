@@ -3,6 +3,7 @@ package com.twitter.tweetshow.controller;
 import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonArrayFormatVisitor;
 import com.twitter.tweetshow.model.Tweet;
 import com.twitter.tweetshow.service.TweetService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,7 @@ import net.sf.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Controller
@@ -40,13 +42,21 @@ public class TweetController {
 
         for(Tweet tweet : tweetsList){
             String text = tweet.getText();
-            if(Pattern.matches(".*(?i)China.*",text)){
+            if(Pattern.matches("[\\s\\S]*(?i)China[\\s\\S]*",text)){
                 tweets.add(tweet);
             }
-            if(Pattern.matches(".*(?i)NASA.*",text)){
+            if(Pattern.matches("[\\s\\S]*(?i)NASA[\\s\\S]*",text)){
                 tweets1.add(tweet);
             }
-            if(text.matches(".*(?i)Trump.*")){
+            if(Pattern.matches("[\\s\\S]*(?i)Trump[\\s\\S]*",text)){
+//                Pattern pattern = Pattern.compile("(?i)Trump");
+//                Matcher matcher = pattern.matcher(text);
+//
+//                while (matcher.find()){
+//                    String word = matcher.group();
+//                    text.replaceAll("(?i)Trump","<span style=\"color: red; font-weight: bold\">"+"Trump"+"</span>");
+//                }
+//                tweet.setText(text);
                 tweets2.add(tweet);
             }
         }

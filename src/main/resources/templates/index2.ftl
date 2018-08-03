@@ -19,11 +19,11 @@
 </head>
 <script>
     $(document).ready(function () {
-        setInterval(show,10000);
+        setInterval(show2,10000);
 //        $("button").click(show);
 
 
-        function show() {
+        function show2() {
             var latestId;
             latestId = $("#row2").children("div").first().attr("id");
             var keyword = "Trump";
@@ -40,7 +40,7 @@
                     $("#row2").prepend(newDiv);
                 }
                 for(var i =data.length-1; i >=0 ; i--){
-                    $("#"+data[i].id).html("<div class=\"\" style=\"background-color: lemonchiffon;border-style:solid;border-width: 2px;border-bottom-width: 1px;border-top-width: 1px\" >\n" +
+                    $("div#row2 div#"+data[i].id).html("<div class=\"\" style=\"background-color: lemonchiffon;border-style:solid;border-width: 2px;border-bottom-width: 1px;border-top-width: 1px\" >\n" +
                             "                        <div class=\"col-md-2\" style=\"margin-top: 5px ;margin-right: 0px;margin-bottom: 0px;margin-left: 0px\" >\n" +
                             "                            <img src=\""+data[i].profileImageUrl+"\" class=\"img-circle\">\n" +
                             "                        </div>\n" +
@@ -54,7 +54,7 @@
                             "                        </div>\n" +
                             "\n" +
                             "                    </div>");
-                    $("#"+data[i].id).delay((data.length-1-i)*1000).slideDown();
+                    $("div#row2 div#"+data[i].id).delay((data.length-1-i)*1000).slideDown();
                 }
             });
 
